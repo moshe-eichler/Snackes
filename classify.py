@@ -4,11 +4,8 @@ Created on Thu Nov 28 18:11:23 2019
 
 @author: User
 """
-import os
-import pickle
+
 from flask import Flask, request, render_template, flash, redirect, url_for
-from werkzeug.utils import secure_filename
-from fastai import *
 from fastai.vision import *
 
 
@@ -42,7 +39,6 @@ def classify():
             file.save(file_path)
             img = open_image(file_path)
             res = cnn_work(img)
-            # pred_class,pred_idx,outputs = learn.predict(img_Echiscoloratus)
         
     return render_template('form.html', result=res)
 
@@ -62,9 +58,6 @@ def upload():
     if file:
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(file_path)
-        img_neoray = open_image(file_path)
-        pred_class,pred_idx,outputs = learn.predict(img_Echiscoloratus)
-    return
 
 
 if __name__ == '__main__':
